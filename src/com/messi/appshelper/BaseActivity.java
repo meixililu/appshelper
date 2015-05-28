@@ -1,7 +1,5 @@
 package com.messi.appshelper;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
@@ -15,8 +13,10 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 
+import com.messi.appshelper.util.AudioTrackUtil;
 import com.messi.appshelper.util.ScreenUtil;
-import com.messi.appshelper.util.Settings;
+import com.nineoldandroids.animation.ObjectAnimator;
+import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
 
 public class BaseActivity extends ActionBarActivity {
@@ -32,7 +32,9 @@ public class BaseActivity extends ActionBarActivity {
 	
 	protected void TransparentStatusbar(){
 		if(VERSION.SDK_INT >= VERSION_CODES.KITKAT) {
+            //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            //透明导航栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 		}
 	}
@@ -90,10 +92,10 @@ public class BaseActivity extends ActionBarActivity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		switch (keyCode) {
 		case KeyEvent.KEYCODE_VOLUME_UP:
-			Settings.AdjustStreamVolume(BaseActivity.this,keyCode);
+			 AudioTrackUtil.adjustStreamVolume(BaseActivity.this,keyCode);
 	         return true;
 	    case KeyEvent.KEYCODE_VOLUME_DOWN:
-	    	Settings.AdjustStreamVolume(BaseActivity.this,keyCode);
+	    	 AudioTrackUtil.adjustStreamVolume(BaseActivity.this,keyCode);
 		     return true;
 		}
 		return super.onKeyDown(keyCode, event);

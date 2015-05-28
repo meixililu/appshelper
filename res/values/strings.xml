@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Appshelper</string>
+    <string name="app_name">快进</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    
+    <string name="title_category">分类</string>
+    <string name="title_often">经常</string>
+    <string name="title_more">更多</string>
 
     <string name="copy_success">复制成功</string>
-    
+    <string name="exit_program">再按一次退出应用</string>
     
 </resources>
