@@ -41,12 +41,16 @@ public class DataBaseUtil {
 		return mCategoryDao.insert(bean);
 	}
 	
-	public void insert(List<Category> beans){
+	public void insertCategoryList(List<Category> beans){
 		mCategoryDao.insertInTx(beans);
 	}
 	
 	public long insert(AppInfo bean){
 		return mAppInfoDao.insert(bean);
+	}
+	
+	public void insertAppInfoList(List<AppInfo> beans){
+		mAppInfoDao.insertInTx(beans);
 	}
 	
 	public void update(Category bean){
@@ -56,10 +60,67 @@ public class DataBaseUtil {
 	public void update(AppInfo bean){
 		mAppInfoDao.update(bean);
 	}
+	
+	public void update(List<AppInfo> beans){
+		mAppInfoDao.updateInTx(beans);
+	}
+	
+	public void insertOrUpdate(AppInfo bean){
+		AppInfo old = isExit(bean);
+		if(old != null){
+			
+		}else{
+			insert(bean);
+		}
+	}
+	
+	public void insertOrUpdate(List<AppInfo> beans){
+		for(AppInfo mAppInfo : beans){
+			AppInfo old = isExit(mAppInfo);
+			if(old != null){
+				
+			}else{
+				insert(mAppInfo);
+			}
+		}
+	}
 
+	public AppInfo isExit(AppInfo bean){
+		QueryBuilder<AppInfo> qb = mAppInfoDao.queryBuilder();
+		qb.where(AppInfoDao.Properties.PackageName.eq(bean.getPackageName()));
+		int size = qb.list().size();
+		if(size > 0){
+			return qb.list().get(0);
+		}else{
+			return null;
+		}
+	}
+	
+	public AppInfo isExit(String packageName){
+		QueryBuilder<AppInfo> qb = mAppInfoDao.queryBuilder();
+		qb.where(AppInfoDao.Properties.PackageName.eq(packageName));
+		int size = qb.list().size();
+		if(size > 0){
+			return qb.list().get(0);
+		}else{
+			return null;
+		}
+	}
+	
+	public String getTypeName(String code){
+		QueryBuilder<Category> qb = mCategoryDao.queryBuilder();
+		qb.where(CategoryDao.Properties.Cid.eq(code));
+		int size = qb.list().size();
+		if(size > 0){
+			return qb.list().get(0).getName();
+		}else{
+			return "";
+		}
+	}
+	
 	public List<Category> getDataListCategory(int offset, int maxResult) {
 		QueryBuilder<Category> qb = mCategoryDao.queryBuilder();
-		qb.orderDesc(CategoryDao.Properties.Id);
+		qb.orderAsc(CategoryDao.Properties.Cid);
 		qb.limit(maxResult);
 		return qb.list();
 	}

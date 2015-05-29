@@ -3,6 +3,7 @@ package com.messi.appshelper.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,13 +11,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.messi.appshelper.EditCategoryActivity;
 import com.messi.appshelper.R;
-import com.messi.appshelper.dao.AppInfo;
 import com.messi.appshelper.dao.Category;
-import com.messi.appshelper.util.ToastUtil;
+import com.messi.appshelper.util.KeyUtil;
 
 public class CategoryGridViewAdapter extends BaseAdapter {
 
@@ -66,10 +66,16 @@ public class CategoryGridViewAdapter extends BaseAdapter {
 		holder.app_cover.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				
+				startIntent(mCategory.getCid());
 			}
 		});
 		return convertView;
+	}
+	
+	private void startIntent(String code){
+		Intent intent = new Intent(mContext,EditCategoryActivity.class);
+		intent.putExtra(KeyUtil.CategoryCodeKey, code);
+		mContext.startActivity(intent);
 	}
 
 	static class ViewHolder {

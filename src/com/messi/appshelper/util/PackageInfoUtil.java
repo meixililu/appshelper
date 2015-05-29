@@ -13,29 +13,54 @@ import com.messi.appshelper.db.DataBaseUtil;
 
 public class PackageInfoUtil {
 
-	public static List<AppInfo> mAppInfoList = new ArrayList<AppInfo>();
+	public static List<AppInfo> mAppInfoList;
 	
 	public static void getPackageInfoList(Context mContext){
 		List<PackageInfo> packages = mContext.getPackageManager().getInstalledPackages(0);
-
 		for(int i=0;i<packages.size();i++) { 
 			PackageInfo packageInfo = packages.get(i); 
-			AppInfo tmpInfo =new AppInfo(); 
-			tmpInfo.setAppName( packageInfo.applicationInfo.loadLabel(mContext.getPackageManager()).toString() ); 
-			tmpInfo.setPackageName( packageInfo.packageName ); 
-			tmpInfo.setVersionName( packageInfo.versionName ); 
-			tmpInfo.setVersionCode( packageInfo.versionCode ); 
-			tmpInfo.setAppIcon( packageInfo.applicationInfo.loadIcon(mContext.getPackageManager()) );
-			if((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0){
-				if (null != mContext.getPackageManager().getLaunchIntentForPackage(packageInfo.packageName)) {
-					mAppInfoList.add(tmpInfo);
+			AppInfo tmpInfo = DataBaseUtil.getInstance().isExit(packageInfo.packageName);
+			if(tmpInfo == null){
+				if((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0){
+					if (null != mContext.getPackageManager().getLaunchIntentForPackage(packageInfo.packageName)) {
+						tmpInfo =new AppInfo(); 
+						tmpInfo.setAppName( packageInfo.applicationInfo.loadLabel(mContext.getPackageManager()).toString() ); 
+						tmpInfo.setPackageName( packageInfo.packageName ); 
+						tmpInfo.setVersionName( packageInfo.versionName ); 
+						tmpInfo.setVersionCode( packageInfo.versionCode ); 
+					}else{
+						continue;
+					}
+				}else{
+					continue;
 				}
-			}else{
-
 			}
+			tmpInfo.setAppIcon( packageInfo.applicationInfo.loadIcon(mContext.getPackageManager()) );
+			mAppInfoList.add(tmpInfo);
 			LogUtil.DefalutLog("getPackageInfoList:"+tmpInfo.toString());
 		}
+		saveAppInfoList(mAppInfoList);
 	}
+	
+	public static void getPackageInfoListBackground(final Context mContext){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				getPackageInfoList(mContext);
+			}
+		}).start();
+	}
+	
+	public static void saveAppInfoList(final List<AppInfo> mAppInfoList){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				DataBaseUtil.getInstance().insertAppInfoList(mAppInfoList);
+			}
+		}).start();
+	}
+	
+	
 	
 	public static void initCategoryData(){
 		new Thread(new Runnable() {
@@ -44,11 +69,11 @@ public class PackageInfoUtil {
 				long size = DataBaseUtil.getInstance().getCategoryCount();
 				if(size < 1){
 					ArrayList<Category> CategoryList = getDefaultCategory();
-					DataBaseUtil.getInstance().insert(CategoryList);
+					DataBaseUtil.getInstance().insertCategoryList(CategoryList);
 				}
 				
 			}
-		}).start();;
+		}).start();
 	}
 	
 	public static ArrayList<Category> getDefaultCategory(){

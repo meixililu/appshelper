@@ -2,7 +2,7 @@ package com.messi.appshelper.util;
 
 public class KeyUtil {
 
-	public static final String Study_Every = "study_every";
+	public static final String CategoryCodeKey = "CategoryCodeKey";
 	
 	public static final String Practice_FourInOne = "Practice_FourInOne";
 	
@@ -73,6 +73,7 @@ public class KeyUtil {
 	
 	public static String ResultTypeTranslate = "ResultTypeTranslate";
 	
+	public static String PracticeDialogAction = "PracticeDialogAction";
 
 	
 	

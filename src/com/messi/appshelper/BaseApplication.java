@@ -1,10 +1,12 @@
 package com.messi.appshelper;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Application;
 import android.content.Context;
 
+import com.messi.appshelper.dao.AppInfo;
 import com.messi.appshelper.dao.DaoMaster;
 import com.messi.appshelper.dao.DaoMaster.OpenHelper;
 import com.messi.appshelper.dao.DaoSession;
@@ -22,6 +24,7 @@ public class BaseApplication extends Application {
     public void onCreate() {  
         super.onCreate();  
         mInstance = this; 
+        PackageInfoUtil.mAppInfoList = new ArrayList<AppInfo>();
         PackageInfoUtil.initCategoryData();
     }  
     

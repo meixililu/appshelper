@@ -13,6 +13,7 @@ public class AppInfo {
     private String packageName;
     private String versionName;
     private Integer versionCode;
+    private String typeName;
     private String defaultType;
     private String customType;
     private Integer systemNo;
@@ -31,19 +32,20 @@ public class AppInfo {
 		this.appIcon = appIcon;
 	}
 
-	public AppInfo() {
+    public AppInfo() {
     }
 
     public AppInfo(Long id) {
         this.id = id;
     }
 
-    public AppInfo(Long id, String appName, String packageName, String versionName, Integer versionCode, String defaultType, String customType, Integer systemNo, String lastOpenTime, Integer startTimes, String backup1, String backup2, String backup3) {
+    public AppInfo(Long id, String appName, String packageName, String versionName, Integer versionCode, String typeName, String defaultType, String customType, Integer systemNo, String lastOpenTime, Integer startTimes, String backup1, String backup2, String backup3) {
         this.id = id;
         this.appName = appName;
         this.packageName = packageName;
         this.versionName = versionName;
         this.versionCode = versionCode;
+        this.typeName = typeName;
         this.defaultType = defaultType;
         this.customType = customType;
         this.systemNo = systemNo;
@@ -92,6 +94,14 @@ public class AppInfo {
 
     public void setVersionCode(Integer versionCode) {
         this.versionCode = versionCode;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getDefaultType() {
@@ -157,8 +167,8 @@ public class AppInfo {
     public void setBackup3(String backup3) {
         this.backup3 = backup3;
     }
-
-	@Override
+    
+    @Override
 	public String toString() {
 		return "AppInfo [id=" + id + ", appName=" + appName + ", packageName="
 				+ packageName + ", versionName=" + versionName
@@ -169,5 +179,4 @@ public class AppInfo {
 				+ ", appIcon=" + appIcon + "]";
 	}
 
-    
 }

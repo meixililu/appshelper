@@ -28,14 +28,15 @@ public class AppInfoDao extends AbstractDao<AppInfo, Long> {
         public final static Property PackageName = new Property(2, String.class, "packageName", false, "PACKAGE_NAME");
         public final static Property VersionName = new Property(3, String.class, "versionName", false, "VERSION_NAME");
         public final static Property VersionCode = new Property(4, Integer.class, "versionCode", false, "VERSION_CODE");
-        public final static Property DefaultType = new Property(5, String.class, "defaultType", false, "DEFAULT_TYPE");
-        public final static Property CustomType = new Property(6, String.class, "customType", false, "CUSTOM_TYPE");
-        public final static Property SystemNo = new Property(7, Integer.class, "systemNo", false, "SYSTEM_NO");
-        public final static Property LastOpenTime = new Property(8, String.class, "lastOpenTime", false, "LAST_OPEN_TIME");
-        public final static Property StartTimes = new Property(9, Integer.class, "startTimes", false, "START_TIMES");
-        public final static Property Backup1 = new Property(10, String.class, "backup1", false, "BACKUP1");
-        public final static Property Backup2 = new Property(11, String.class, "backup2", false, "BACKUP2");
-        public final static Property Backup3 = new Property(12, String.class, "backup3", false, "BACKUP3");
+        public final static Property TypeName = new Property(5, String.class, "typeName", false, "TYPE_NAME");
+        public final static Property DefaultType = new Property(6, String.class, "defaultType", false, "DEFAULT_TYPE");
+        public final static Property CustomType = new Property(7, String.class, "customType", false, "CUSTOM_TYPE");
+        public final static Property SystemNo = new Property(8, Integer.class, "systemNo", false, "SYSTEM_NO");
+        public final static Property LastOpenTime = new Property(9, String.class, "lastOpenTime", false, "LAST_OPEN_TIME");
+        public final static Property StartTimes = new Property(10, Integer.class, "startTimes", false, "START_TIMES");
+        public final static Property Backup1 = new Property(11, String.class, "backup1", false, "BACKUP1");
+        public final static Property Backup2 = new Property(12, String.class, "backup2", false, "BACKUP2");
+        public final static Property Backup3 = new Property(13, String.class, "backup3", false, "BACKUP3");
     };
 
 
@@ -56,14 +57,15 @@ public class AppInfoDao extends AbstractDao<AppInfo, Long> {
                 "'PACKAGE_NAME' TEXT," + // 2: packageName
                 "'VERSION_NAME' TEXT," + // 3: versionName
                 "'VERSION_CODE' INTEGER," + // 4: versionCode
-                "'DEFAULT_TYPE' TEXT," + // 5: defaultType
-                "'CUSTOM_TYPE' TEXT," + // 6: customType
-                "'SYSTEM_NO' INTEGER," + // 7: systemNo
-                "'LAST_OPEN_TIME' TEXT," + // 8: lastOpenTime
-                "'START_TIMES' INTEGER," + // 9: startTimes
-                "'BACKUP1' TEXT," + // 10: backup1
-                "'BACKUP2' TEXT," + // 11: backup2
-                "'BACKUP3' TEXT);"); // 12: backup3
+                "'TYPE_NAME' TEXT," + // 5: typeName
+                "'DEFAULT_TYPE' TEXT," + // 6: defaultType
+                "'CUSTOM_TYPE' TEXT," + // 7: customType
+                "'SYSTEM_NO' INTEGER," + // 8: systemNo
+                "'LAST_OPEN_TIME' TEXT," + // 9: lastOpenTime
+                "'START_TIMES' INTEGER," + // 10: startTimes
+                "'BACKUP1' TEXT," + // 11: backup1
+                "'BACKUP2' TEXT," + // 12: backup2
+                "'BACKUP3' TEXT);"); // 13: backup3
     }
 
     /** Drops the underlying database table. */
@@ -102,44 +104,49 @@ public class AppInfoDao extends AbstractDao<AppInfo, Long> {
             stmt.bindLong(5, versionCode);
         }
  
+        String typeName = entity.getTypeName();
+        if (typeName != null) {
+            stmt.bindString(6, typeName);
+        }
+ 
         String defaultType = entity.getDefaultType();
         if (defaultType != null) {
-            stmt.bindString(6, defaultType);
+            stmt.bindString(7, defaultType);
         }
  
         String customType = entity.getCustomType();
         if (customType != null) {
-            stmt.bindString(7, customType);
+            stmt.bindString(8, customType);
         }
  
         Integer systemNo = entity.getSystemNo();
         if (systemNo != null) {
-            stmt.bindLong(8, systemNo);
+            stmt.bindLong(9, systemNo);
         }
  
         String lastOpenTime = entity.getLastOpenTime();
         if (lastOpenTime != null) {
-            stmt.bindString(9, lastOpenTime);
+            stmt.bindString(10, lastOpenTime);
         }
  
         Integer startTimes = entity.getStartTimes();
         if (startTimes != null) {
-            stmt.bindLong(10, startTimes);
+            stmt.bindLong(11, startTimes);
         }
  
         String backup1 = entity.getBackup1();
         if (backup1 != null) {
-            stmt.bindString(11, backup1);
+            stmt.bindString(12, backup1);
         }
  
         String backup2 = entity.getBackup2();
         if (backup2 != null) {
-            stmt.bindString(12, backup2);
+            stmt.bindString(13, backup2);
         }
  
         String backup3 = entity.getBackup3();
         if (backup3 != null) {
-            stmt.bindString(13, backup3);
+            stmt.bindString(14, backup3);
         }
     }
 
@@ -158,14 +165,15 @@ public class AppInfoDao extends AbstractDao<AppInfo, Long> {
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // packageName
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // versionName
             cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4), // versionCode
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // defaultType
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // customType
-            cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7), // systemNo
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // lastOpenTime
-            cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9), // startTimes
-            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // backup1
-            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // backup2
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // backup3
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // typeName
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // defaultType
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // customType
+            cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8), // systemNo
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // lastOpenTime
+            cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10), // startTimes
+            cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // backup1
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // backup2
+            cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13) // backup3
         );
         return entity;
     }
@@ -178,14 +186,15 @@ public class AppInfoDao extends AbstractDao<AppInfo, Long> {
         entity.setPackageName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setVersionName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setVersionCode(cursor.isNull(offset + 4) ? null : cursor.getInt(offset + 4));
-        entity.setDefaultType(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setCustomType(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setSystemNo(cursor.isNull(offset + 7) ? null : cursor.getInt(offset + 7));
-        entity.setLastOpenTime(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setStartTimes(cursor.isNull(offset + 9) ? null : cursor.getInt(offset + 9));
-        entity.setBackup1(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
-        entity.setBackup2(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
-        entity.setBackup3(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setTypeName(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDefaultType(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setCustomType(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setSystemNo(cursor.isNull(offset + 8) ? null : cursor.getInt(offset + 8));
+        entity.setLastOpenTime(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setStartTimes(cursor.isNull(offset + 10) ? null : cursor.getInt(offset + 10));
+        entity.setBackup1(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
+        entity.setBackup2(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setBackup3(cursor.isNull(offset + 13) ? null : cursor.getString(offset + 13));
      }
     
     /** @inheritdoc */

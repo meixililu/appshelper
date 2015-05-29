@@ -8,6 +8,7 @@
     <string name="title_category">分类</string>
     <string name="title_often">经常</string>
     <string name="title_more">更多</string>
+    <string name="title_edit_category">修改编辑</string>
 
     <string name="copy_success">复制成功</string>
     <string name="exit_program">再按一次退出应用</string>
