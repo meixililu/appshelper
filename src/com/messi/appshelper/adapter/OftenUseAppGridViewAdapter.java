@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.messi.appshelper.R;
 import com.messi.appshelper.dao.AppInfo;
-import com.messi.appshelper.util.LogUtil;
 import com.messi.appshelper.util.ToastUtil;
 
 public class OftenUseAppGridViewAdapter extends BaseAdapter {

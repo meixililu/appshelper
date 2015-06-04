@@ -17,20 +17,18 @@ public class PackageInfoUtil {
 	
 	public static void getPackageInfoList(Context mContext){
 		List<PackageInfo> packages = mContext.getPackageManager().getInstalledPackages(0);
+		List<AppInfo> mList = new ArrayList<AppInfo>();
 		for(int i=0;i<packages.size();i++) { 
 			PackageInfo packageInfo = packages.get(i); 
 			AppInfo tmpInfo = DataBaseUtil.getInstance().isExit(packageInfo.packageName);
 			if(tmpInfo == null){
-				if((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0){
-					if (null != mContext.getPackageManager().getLaunchIntentForPackage(packageInfo.packageName)) {
-						tmpInfo =new AppInfo(); 
-						tmpInfo.setAppName( packageInfo.applicationInfo.loadLabel(mContext.getPackageManager()).toString() ); 
-						tmpInfo.setPackageName( packageInfo.packageName ); 
-						tmpInfo.setVersionName( packageInfo.versionName ); 
-						tmpInfo.setVersionCode( packageInfo.versionCode ); 
-					}else{
-						continue;
-					}
+				if (null != mContext.getPackageManager().getLaunchIntentForPackage(packageInfo.packageName)) {
+					tmpInfo =new AppInfo(); 
+					tmpInfo.setAppName( packageInfo.applicationInfo.loadLabel(mContext.getPackageManager()).toString() ); 
+					tmpInfo.setPackageName( packageInfo.packageName ); 
+					tmpInfo.setVersionName( packageInfo.versionName ); 
+					tmpInfo.setVersionCode( packageInfo.versionCode ); 
+					mList.add(tmpInfo);
 				}else{
 					continue;
 				}
@@ -39,7 +37,7 @@ public class PackageInfoUtil {
 			mAppInfoList.add(tmpInfo);
 			LogUtil.DefalutLog("getPackageInfoList:"+tmpInfo.toString());
 		}
-		saveAppInfoList(mAppInfoList);
+		saveAppInfoList(mList);
 	}
 	
 	public static void getPackageInfoListBackground(final Context mContext){

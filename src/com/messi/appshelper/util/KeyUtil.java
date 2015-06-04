@@ -4,7 +4,10 @@ public class KeyUtil {
 
 	public static final String CategoryCodeKey = "CategoryCodeKey";
 	
-	public static final String Practice_FourInOne = "Practice_FourInOne";
+	public static final String TitleKey = "TitleKey";
+	
+	
+	
 	
 	public static final String Practice_ReadAfterMe = "Practice_ReadAfterMe";
 	

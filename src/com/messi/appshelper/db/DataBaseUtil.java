@@ -118,17 +118,22 @@ public class DataBaseUtil {
 		}
 	}
 	
-	public List<Category> getDataListCategory(int offset, int maxResult) {
+	public List<Category> getDataListCategory() {
 		QueryBuilder<Category> qb = mCategoryDao.queryBuilder();
-		qb.orderAsc(CategoryDao.Properties.Cid);
-		qb.limit(maxResult);
+		qb.orderAsc(CategoryDao.Properties.ClickTimes);
 		return qb.list();
 	}
 	
-	public List<AppInfo> getDataListAppInfo(int offset, int maxResult) {
+	public List<AppInfo> getDataListAppInfo() {
 		QueryBuilder<AppInfo> qb = mAppInfoDao.queryBuilder();
-		qb.orderDesc(AppInfoDao.Properties.Id);
-		qb.limit(maxResult);
+		qb.orderDesc(AppInfoDao.Properties.StartTimes);
+		return qb.list();
+	}
+	
+	public List<AppInfo> getDataListAppInfo(String category) {
+		QueryBuilder<AppInfo> qb = mAppInfoDao.queryBuilder();
+		qb.where(AppInfoDao.Properties.DefaultType.eq(category));
+		qb.orderDesc(AppInfoDao.Properties.StartTimes);
 		return qb.list();
 	}
 	

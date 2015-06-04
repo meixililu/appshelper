@@ -84,6 +84,7 @@ public class BaseActivity extends ActionBarActivity {
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			finish();
+			break;
 		}
        return super.onOptionsItemSelected(item);
 	}

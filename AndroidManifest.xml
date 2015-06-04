@@ -49,6 +49,9 @@
         <activity
             android:name=".EditCategoryActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".CategoryDetialActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

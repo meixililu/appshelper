@@ -1,0 +1,53 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/app_background"
+    >
+
+    <android.support.v7.widget.Toolbar
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/my_awesome_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize" >
+
+        <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
+            android:id="@+id/progressbar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="right"
+            android:background="@color/white"
+            android:visibility="gone" />
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+        >
+		<GridView 
+	        android:id="@+id/gridview"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:verticalSpacing="0dp"
+	        android:horizontalSpacing="0dp"
+	        android:numColumns="3"
+	        android:stretchMode="columnWidth"  
+	    	android:gravity="center"  
+	        />
+        <TextView 
+            android:id="@+id/no_result"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:textColor="@color/text_grey"
+	        android:textSize="@dimen/bigger"
+	        android:gravity="center"
+	        android:text="该分类暂无APP，轻触屏幕去设置！"
+	        android:visibility="gone"
+            />
+    </FrameLayout>
+
+</LinearLayout>

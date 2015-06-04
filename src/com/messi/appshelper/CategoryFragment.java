@@ -12,7 +12,6 @@ import android.widget.GridView;
 import com.messi.appshelper.adapter.CategoryGridViewAdapter;
 import com.messi.appshelper.dao.Category;
 import com.messi.appshelper.db.DataBaseUtil;
-import com.messi.appshelper.util.PackageInfoUtil;
 
 
 public class CategoryFragment extends BaseFragment implements OnClickListener {
@@ -21,6 +20,7 @@ public class CategoryFragment extends BaseFragment implements OnClickListener {
 	private GridView gridview;
 	private CategoryGridViewAdapter mAdapter;
 	ArrayList<Category> mCategoryList;
+	private Long test;
 	
 	public static BaseFragment getInstance(){
 		if(mBaseFragment == null){
@@ -39,7 +39,7 @@ public class CategoryFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		mCategoryList = (ArrayList<Category>) DataBaseUtil.getInstance().getDataListCategory(0, 100);
+		mCategoryList = (ArrayList<Category>) DataBaseUtil.getInstance().getDataListCategory();
 	}
 	
 	@Override

@@ -13,7 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.messi.appshelper.EditCategoryActivity;
+import com.messi.appshelper.CategoryDetialActivity;
 import com.messi.appshelper.R;
 import com.messi.appshelper.dao.Category;
 import com.messi.appshelper.util.KeyUtil;
@@ -66,15 +66,16 @@ public class CategoryGridViewAdapter extends BaseAdapter {
 		holder.app_cover.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startIntent(mCategory.getCid());
+				startIntent(mCategory.getCid(), mCategory.getName());
 			}
 		});
 		return convertView;
 	}
 	
-	private void startIntent(String code){
-		Intent intent = new Intent(mContext,EditCategoryActivity.class);
+	private void startIntent(String code, String title){
+		Intent intent = new Intent(mContext,CategoryDetialActivity.class);
 		intent.putExtra(KeyUtil.CategoryCodeKey, code);
+		intent.putExtra(KeyUtil.TitleKey, title);
 		mContext.startActivity(intent);
 	}
 
