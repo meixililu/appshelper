@@ -2,12 +2,13 @@
 <resources>
 
     <string name="app_name">快进</string>
+    <string name="app_des">快速进入App</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_edit">修改</string>
     
     <string name="title_category">分类</string>
-    <string name="title_often">经常</string>
+    <string name="title_often">所有</string>
     <string name="title_more">更多</string>
     <string name="title_edit_category">修改编辑</string>
 

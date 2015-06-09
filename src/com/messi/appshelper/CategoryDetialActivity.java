@@ -20,6 +20,7 @@ import com.messi.appshelper.adapter.OftenUseAppGridViewAdapter;
 import com.messi.appshelper.dao.AppInfo;
 import com.messi.appshelper.db.DataBaseUtil;
 import com.messi.appshelper.util.KeyUtil;
+import com.messi.appshelper.util.PackageInfoUtil;
 
 public class CategoryDetialActivity extends BaseActivity {
 
@@ -111,7 +112,7 @@ public class CategoryDetialActivity extends BaseActivity {
 		
 		@Override
 		protected Void doInBackground(Void... params) {
-			List<AppInfo> mList = DataBaseUtil.getInstance().getDataListAppInfo(category);
+			List<AppInfo> mList = PackageInfoUtil.getAppInfoByCategory(category);
 			if(mList != null){
 				mAppInfoList.clear();
 				mAppInfoList.addAll(mList);

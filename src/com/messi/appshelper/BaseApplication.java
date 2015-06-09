@@ -24,7 +24,6 @@ public class BaseApplication extends Application {
     public void onCreate() {  
         super.onCreate();  
         mInstance = this; 
-        PackageInfoUtil.mAppInfoList = new ArrayList<AppInfo>();
         PackageInfoUtil.initCategoryData();
     }  
     

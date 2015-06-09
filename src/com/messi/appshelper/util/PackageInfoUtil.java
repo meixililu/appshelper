@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.text.TextUtils;
 
 import com.messi.appshelper.dao.AppInfo;
 import com.messi.appshelper.dao.Category;
@@ -17,6 +18,7 @@ public class PackageInfoUtil {
 	
 	public static void getPackageInfoList(Context mContext){
 		List<PackageInfo> packages = mContext.getPackageManager().getInstalledPackages(0);
+		mAppInfoList = new ArrayList<AppInfo>();
 		List<AppInfo> mList = new ArrayList<AppInfo>();
 		for(int i=0;i<packages.size();i++) { 
 			PackageInfo packageInfo = packages.get(i); 
@@ -58,7 +60,19 @@ public class PackageInfoUtil {
 		}).start();
 	}
 	
-	
+	public static List<AppInfo> getAppInfoByCategory(String category){
+		List<AppInfo> categoryList = new ArrayList<AppInfo>();
+		if(mAppInfoList != null){
+			for(AppInfo mAppInfo : mAppInfoList){
+				if(!TextUtils.isEmpty(mAppInfo.getDefaultType())){
+					if(mAppInfo.getDefaultType().equals(category)){
+						categoryList.add(mAppInfo);
+					}
+				}
+			}
+		}
+		return categoryList;
+	}
 	
 	public static void initCategoryData(){
 		new Thread(new Runnable() {
@@ -78,7 +92,6 @@ public class PackageInfoUtil {
 		ArrayList<Category> CategoryList = new ArrayList<Category>();
 		CategoryList.add(new Category("游戏","1001","0"));
 		CategoryList.add(new Category("社交","1002","0"));
-		CategoryList.add(new Category("工具","1003","0"));
 		CategoryList.add(new Category("购物","1004","0"));
 		CategoryList.add(new Category("理财","1005","0"));
 		CategoryList.add(new Category("学习","1006","0"));
@@ -88,7 +101,9 @@ public class PackageInfoUtil {
 		CategoryList.add(new Category("出行","1010","0"));
 		CategoryList.add(new Category("娱乐","1011","0"));
 		CategoryList.add(new Category("生活","1012","0"));
-		CategoryList.add(new Category("其他","1013","0"));
+		CategoryList.add(new Category("工具","1003","0"));
+		CategoryList.add(new Category("系统","1013","0"));
+		CategoryList.add(new Category("其他","1014","0"));
 		return CategoryList;
 	}
 }

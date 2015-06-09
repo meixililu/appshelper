@@ -35,7 +35,7 @@ public class OftenFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		new GetAppListTask().execute();
+		
 	}
 	
 	@Override
@@ -54,27 +54,5 @@ public class OftenFragment extends BaseFragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		
-	}
-	
-	class GetAppListTask extends AsyncTask<Void, Void, Void>{
-
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			loadding();
-		}
-		
-		@Override
-		protected Void doInBackground(Void... params) {
-			PackageInfoUtil.getPackageInfoList(getActivity());
-			return null;
-		}
-
-
-		@Override
-		protected void onPostExecute(Void result) {
-			finishLoadding();
-			mAdapter.notifyDataSetChanged();
-		}
 	}
 }

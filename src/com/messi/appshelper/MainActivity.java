@@ -12,6 +12,7 @@ import com.messi.appshelper.adapter.MainPageAdapter;
 import com.messi.appshelper.listener.FragmentProgressbarListener;
 import com.messi.appshelper.util.PackageInfoUtil;
 import com.messi.appshelper.view.PagerSlidingTabStrip;
+import com.umeng.message.PushAgent;
 
 public class MainActivity extends BaseActivity implements FragmentProgressbarListener{
 
@@ -25,35 +26,44 @@ public class MainActivity extends BaseActivity implements FragmentProgressbarLis
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		startPushTask();
 		init();
+	}
+	
+	private void startPushTask(){
+		try {
+			PushAgent mPushAgent = PushAgent.getInstance(this);
+			mPushAgent.enable();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void init(){
 		if (toolbar != null) {
 			getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-//			toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
 		}
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		indicator = (PagerSlidingTabStrip) findViewById(R.id.indicator);
 		mProgressbar = (ProgressBarCircularIndeterminate) findViewById(R.id.progressbar);
 		mAdapter = new MainPageAdapter(this.getSupportFragmentManager(),this);
 		viewPager.setAdapter(mAdapter);
-		viewPager.setOffscreenPageLimit(4);
+		viewPager.setOffscreenPageLimit(3);
 		indicator.setViewPager(viewPager);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.main, menu);
+//		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
+//		if (id == R.id.action_settings) {
+//			return true;
+//		}
 		return super.onOptionsItemSelected(item);
 	}
 

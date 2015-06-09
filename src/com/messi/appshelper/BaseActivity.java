@@ -18,6 +18,7 @@ import com.messi.appshelper.util.ScreenUtil;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.animation.ValueAnimator;
 import com.nineoldandroids.view.ViewHelper;
+import com.umeng.analytics.MobclickAgent;
 
 public class BaseActivity extends ActionBarActivity {
 
@@ -70,13 +71,13 @@ public class BaseActivity extends ActionBarActivity {
 	@Override
 	protected void onResume() {
 		super.onResume();
-//		StatService.onResume(this);
+		MobclickAgent.onResume(this);
 	}
 
 	@Override
 	protected void onPause() {
 		super.onPause();
-//		StatService.onPause(this);
+		MobclickAgent.onPause(this);
 	}
 	
 	@Override

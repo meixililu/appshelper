@@ -130,12 +130,12 @@ public class DataBaseUtil {
 		return qb.list();
 	}
 	
-	public List<AppInfo> getDataListAppInfo(String category) {
-		QueryBuilder<AppInfo> qb = mAppInfoDao.queryBuilder();
-		qb.where(AppInfoDao.Properties.DefaultType.eq(category));
-		qb.orderDesc(AppInfoDao.Properties.StartTimes);
-		return qb.list();
-	}
+//	public List<AppInfo> getDataListAppInfo(String category) {
+//		QueryBuilder<AppInfo> qb = mAppInfoDao.queryBuilder();
+//		qb.where(AppInfoDao.Properties.DefaultType.eq(category));
+//		qb.orderDesc(AppInfoDao.Properties.StartTimes);
+//		return qb.list();
+//	}
 	
 	public void dele(Category bean) {
 		mCategoryDao.delete(bean);
