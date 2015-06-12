@@ -15,10 +15,10 @@ import android.view.View.OnClickListener;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ButtonFlat;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.messi.appshelper.adapter.OftenUseAppGridViewAdapter;
 import com.messi.appshelper.dao.AppInfo;
-import com.messi.appshelper.db.DataBaseUtil;
 import com.messi.appshelper.util.KeyUtil;
 import com.messi.appshelper.util.PackageInfoUtil;
 
@@ -26,6 +26,7 @@ public class CategoryDetialActivity extends BaseActivity {
 
 	private ProgressBarCircularIndeterminate mProgressbar;
 	private GridView mGridView;
+	
 	private OftenUseAppGridViewAdapter mAdapter;
 	private List<AppInfo> mAppInfoList;
 	private int requestCode = 10001;

@@ -15,6 +15,14 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize" >
 
+        <com.gc.materialdesign.views.ButtonFlat
+                android:id="@+id/buttonflat"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:layout_gravity="right"
+                android:text="完成" />
+        
         <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
             android:id="@+id/progressbar"
             android:layout_width="28dp"
