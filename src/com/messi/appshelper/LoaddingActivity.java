@@ -8,7 +8,7 @@ import android.os.Handler;
 
 import com.messi.appshelper.util.PackageInfoUtil;
 
-public class LoaddingActivity extends Activity {
+public class LoaddingActivity extends BaseActivity {
 
 	private boolean isFinishLoadingData;
 	private boolean isFinishWaiting;
